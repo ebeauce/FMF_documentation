@@ -1,5 +1,0 @@
-site_name: Fast Matched Filter - Documentation
-pages:
-    - Introduction: introduction.md
-    - Usage: usage.md
-theme: readthedocs
