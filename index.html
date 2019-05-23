@@ -105,7 +105,7 @@
                 <h1 id="about-fast_matched_filter-fmf">About fast_matched_filter (FMF)</h1>
 <p>An efficient seismic matched-filter search for both CPU and GPU architectures.</p>
 <p>If you use FMF in research to be published, please reference the following article: Beaucé, Eric, W. B. Frank, and Alexey Romanenko (2017). Fast matched-filter (FMF): an efficient seismic matched-filter search for both CPU and GPU architectures.<br/><em>Seismological Research Letters</em>, doi: <a href="https://doi.org/10.1785/0220170181">10.1785/0220170181</a></p>
-<p>FMF is available @ https://github.com/beridel/fast_matched_filter
+<p>FMF is available at <a href="https://github.com/beridel/fast_matched_filter">https://github.com/beridel/fast_matched_filter</a>
 and can be downloaded with:</p>
 <p>$ git clone https://github.com/beridel/fast_matched_filter.git</p>
 <p><em>Required software/hardware:</em><br/>
@@ -114,6 +114,7 @@ and can be downloaded with:</p>
 - GPU version: Python (v2.7 or 3.x) and a discrete Nvidia graphics card that supports CUDA C with CUDA toolkit installed.<br/>
 FMF is known to run well with gcc 4.8.4 or 4.8.5, and cuda 7.5.</p>
 <h1 id="installation">Installation</h1>
+<p>After downloading FMF, go to the main folder.<br/></p>
 <p>A simple make + whichever implementation does the trick.  Possible make commands are:<br/></p>
 <pre><code>$ make python_cpu
 $ make python_gpu
@@ -126,7 +127,7 @@ $ make matlab
 $ python setup.py install
 </code></pre>
 
-<p>OR<br/></p>
+<p>OR (preferred option for a Python user, since it will install FMF to your standard package directory)<br/></p>
 <pre><code>$ python setup.py build
 $ pip install
 </code></pre>
@@ -186,5 +187,5 @@ Both CPU and GPU versions are called with the <em>matched_filter</em> function. 
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-05-23 17:56:16
+Build Date UTC : 2019-05-23 19:47:58
 -->
