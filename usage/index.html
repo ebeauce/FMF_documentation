@@ -100,29 +100,42 @@
             <div class="section">
               
                 <h1 id="description-of-the-arguments">Description of the Arguments</h1>
-<p>The wrapper function <em>matched_filter</em> takes 6 arguments:<br/>
+<p>The wrapper function <em>matched_filter</em>  takes 6 arguments (5 arguments only for the Matlab version):<br/>
  - templates: array with the template waveforms to search for in the continuous data,<br/>
  - moveouts: array with the relative arrival times (in samples) associated with each template,<br/>
  - weights: array with the weights used in the weighted sum of the correlation coefficients,<br/>
  - data: array with the continuous data,<br/>
  - step: temporal step (in samples) between two consecutive calculations of the correlation coefficient,<br/>
- - arch: architecture used to run FMF ('cpu' or 'gpu', default is 'cpu').<br/></p>
+ - arch (Python only): architecture used to run FMF ('cpu' or 'gpu', default is 'cpu').<br/></p>
 <p>Because Matlab and Python use different conventions for the mapping between the indexing and the location in memory, the input arrays have different dimensions depending on whether Matlab or Python is used.</p>
 <p><strong>Matlab:</strong><br/>
 In Matlab, the most contiguous dimension is the first one. Therefore, the arrays should have dimensions:<br/>
  - continuous data (n_samples_data, n_components, n_stations)<br/>
  - template waveforms (n_samples_template, n_components, n_stations, n_detections)<br/>
- - moveouts (n_components, n_stations)<br/></p>
+ - moveouts (n_components, n_stations)<br/>
+ - weights (n_components, n_stations)<br/></p>
 <p><strong>Python:</strong><br/>
 In Python, the most contiguous dimension is the last one. Therefore, the arrays should have dimensions:<br/>
  - continuous data (n_stations, n_components, n_samples_data)<br/>
  - template waveforms (n_detections, n_stations, n_components, n_samples_template)<br/>
- - moveouts (n_stations, n_components)<br/></p>
+ - moveouts (n_stations, n_components)<br/>
+ - weights (n_stations, n_components)<br/></p>
 <h1 id="output-of-fmf">Output of FMF</h1>
 <p>FMF returns the time series of the average correlation coefficients (CC) calculated for each template given in input. Therefore, the output has dimensions:<br/>
  - Python: (n_templates, n_correlations),<br/>
  - Matlab: (n_correlations, n_templates).<br/>
-The number of correlations (n_correlations) is determined by the length of the continuous data and the temporal step you used.</p>
+The number of correlations (n_correlations) is determined by the length of the continuous data and the temporal step you used.<br/></p>
+<p>Given the 6 input arguments described here, the correlation coefficients are obtained by calling the wrapper function in the following way: </p>
+<p><strong>Matlab:</strong><br/></p>
+<pre><code>cc = fast_matched_filter(templates, moveouts, weights, data, step)
+</code></pre>
+
+<p>cc(:, i) is the correlation coefficient time series for the i-th template.</p>
+<p><strong>Python:</strong><br/></p>
+<pre><code>cc = matched_filter(templates, moveouts, weights, data, step, arch='cpu' or 'gpu')
+</code></pre>
+
+<p>cc[i,:] is the correlation coefficient time series for the (i+1)-th template.</p>
 <p>To perform earthquake detection from the CC time series, we typically look for the samples that exceed a threshold defined by 8xRMS or 10xMAD (<em>cf.</em> figure below).
 <img src="../pictures/matched_filter.jpeg" width="100%">
 Figure from:<br/>
