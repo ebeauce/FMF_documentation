@@ -109,19 +109,19 @@ Extract the content of the archive in <em>FMF_tuto</em>.</p>
 <ul>
 <li>To avoid issues caused by package discrepancies, we provide a conda environment ready for cloning. If you do not have the anaconda distribution, please have a look at <a href="https://www.anaconda.com/distribution/">https://www.anaconda.com/distribution/</a>. To clone our environment, open a terminal in <em>FMF_tuto</em> and run:</li>
 </ul>
-<pre><code>conda create --name FMF_tuto --file FMF_tuto_Python_packages.txt
+<pre><code class="bash">conda create --name FMF_tuto --file FMF_tuto_Python_packages.txt
 </code></pre>
 
 <ul>
 <li>Activate your new conda environment with:</li>
 </ul>
-<pre><code>source activate FMF_tuto
+<pre><code class="bash">source activate FMF_tuto
 </code></pre>
 
 <ul>
 <li>You now need to install FMF. Move to the folder <em>fast_matched_filter</em> and run:</li>
 </ul>
-<pre><code>python setup.py build
+<pre><code class="bash">python setup.py build
 pip install .
 </code></pre>
 
