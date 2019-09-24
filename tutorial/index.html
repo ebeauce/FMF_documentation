@@ -63,6 +63,9 @@
     <a class="current" href="./">Tutorial</a>
     <ul class="subnav">
             
+    <li class="toctree-l2"><a href="#prerequisite">Prerequisite</a></li>
+    
+
     </ul>
 	    </li>
           
@@ -98,7 +101,31 @@
           <div role="main">
             <div class="section">
               
-                <p>This tutorial shows how to detect new seismic events with template matching starting from a known earthquake.</p>
+                <p>This tutorial shows how to detect new seismic events with template matching starting from a known earthquake (using FMF, of course!). The tutorial is organized into a series of four python jupyter notebooks.</p>
+<h1 id="prerequisite">Prerequisite</h1>
+<p>We provide the material required by this tutorial at:<br/>
+<a href="https://www.dropbox.com/sh/3vvwn072o0kde05/AAATww2-BkKRRGf9SyjBjNC8a?dl=0">https://www.dropbox.com/sh/3vvwn072o0kde05/AAATww2-BkKRRGf9SyjBjNC8a?dl=0</a></p>
+<ul>
+<li>To avoid issues caused by package discrepancies, we provide a conda environment ready for cloning. If you do not have the anaconda distribution, please have a look at <a href="https://www.anaconda.com/distribution/">https://www.anaconda.com/distribution/</a>. To clone our environment, go to the main folder <em>tuto_material</em> and run:</li>
+</ul>
+<pre><code>conda create --name FMF_tuto --file FMF_tuto_Python_packages.txt
+</code></pre>
+
+<ul>
+<li>Activate your new conda environment with:</li>
+</ul>
+<pre><code>source activate FMF_tuto
+</code></pre>
+
+<ul>
+<li>You now need to install FMF. Move to the folder <em>fast_matched_filter</em> and run:</li>
+</ul>
+<pre><code>python setup.py build
+pip install .
+
+</code></pre>
+
+<p>We also refer you to the <a href="installation">https://ebeauce.github.io/FMF_documentation/#installation</a> tab of this documentation.</p>
               
             </div>
           </div>
