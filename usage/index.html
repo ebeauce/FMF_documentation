@@ -132,12 +132,12 @@ In Python, the most contiguous dimension is the last one. Therefore, the arrays 
 The number of correlations (n_correlations) is determined by the length of the continuous data and the temporal step you used.<br/></p>
 <p>Given the 6 input arguments described here, the correlation coefficients are obtained by calling the wrapper function in the following way: </p>
 <p><strong>Matlab:</strong><br/></p>
-<pre><code>cc = fast_matched_filter(templates, moveouts, weights, data, step)
+<pre><code class="matlab">cc = fast_matched_filter(templates, moveouts, weights, data, step)
 </code></pre>
 
 <p>cc(:, i) is the correlation coefficient time series for the i-th template.</p>
 <p><strong>Python:</strong><br/></p>
-<pre><code>cc = matched_filter(templates, moveouts, weights, data, step, arch='cpu' or 'gpu')
+<pre><code class="python">cc = matched_filter(templates, moveouts, weights, data, step, arch='cpu' or 'gpu')
 </code></pre>
 
 <p>cc[i,:] is the correlation coefficient time series for the (i+1)-th template.</p>

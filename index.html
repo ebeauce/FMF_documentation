@@ -121,20 +121,20 @@ FMF is known to run well with gcc 4.8.4 or 4.8.5, and cuda 7.5.</p>
 <h1 id="installation">Installation</h1>
 <p>After downloading FMF, go to the main folder.<br/></p>
 <p>A simple make + whichever implementation does the trick.  Possible make commands are:<br/></p>
-<pre><code>$ make python_cpu
-$ make python_gpu
-$ make matlab
+<pre><code class="bash">make python_cpu
+make python_gpu
+make matlab
 </code></pre>
 
 <p>NB: Matlab compiles via mex, which needs to be setup before running. Any compiler can be chosen during the setup of mex, because it will be bypassed by the CC environment variable in the Makefile. Therefore CC must be set to an OpenMP-compatible compiler. Also, make sure the mex_extension variable in the Makefile corresponds to your OS (the different variables for each OS are listed in the Makefile).</p>
 <p>Installation as a Python module is possible via setup tools or even pip (which supports clean uninstalling):<br/></p>
-<pre><code>$ python setup.py build
-$ python setup.py install
+<pre><code class="bash">python setup.py build
+python setup.py install
 </code></pre>
 
 <p>OR (preferred option for a Python user, since it will install FMF to your standard package directory)<br/></p>
-<pre><code>$ python setup.py build
-$ pip install .
+<pre><code class="bash">python setup.py build
+pip install .
 </code></pre>
 
 <h1 id="running">Running</h1>
@@ -192,5 +192,5 @@ Both CPU and GPU versions are called with the <em>matched_filter</em> function. 
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-09-24 14:18:48
+Build Date UTC : 2019-09-24 14:20:01
 -->
