@@ -1,0 +1,9 @@
+## 1.3.0
+
+- *arch* can now be "precise" in addition to "cpu" or "gpu". "precise" is a CPU implementation that does not use an optimized summation algorithm to speed up the calculation of the sum of the squared data. Thus, "precise" is less fast than "cpu" but does not lose in accuracy when large amplitudes are encountered in the data (which can sometimes happen with "cpu").<br/>
+- The sum of the squared templates is computed only once at the beginning.<br/>
+- The station and component axes of the input arrays can be merged into a single axis of traces.<br/>
+
+## 1.2.0
+
+- Fixed a bug in the computation of the sum of the squared data that occurred when some of the weights were equal to zero.

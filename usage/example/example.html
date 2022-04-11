@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example &mdash; Fast Matched Filter 1.4.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Fast Matched Filter
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../updates.html">Updates</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Fast Matched Filter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/usage/example/example.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="example">
+<h1>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h1>
+<div class="section" id="description-of-the-arguments">
+<h2>Description of the Arguments<a class="headerlink" href="#description-of-the-arguments" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>The wrapper function _matched_filter_  takes 6 arguments (5 arguments only for the Matlab version):</dt><dd><ul class="simple">
+<li><p>templates: array with the template waveforms to search for in the continuous data,</p></li>
+<li><p>moveouts: array with the relative arrival times (in samples) associated with each template,</p></li>
+<li><p>weights: array with the weights used in the weighted sum of the correlation coefficients,</p></li>
+<li><p>data: array with the continuous data,</p></li>
+<li><p>step: temporal step (in samples) between two consecutive calculations of the correlation coefficient,</p></li>
+<li><p>arch (Python only): architecture used to run FMF (‘cpu’ or ‘gpu’, default is ‘cpu’).</p></li>
+</ul>
+</dd>
+</dl>
+<p>Because Matlab and Python use different conventions for the mapping between the indexing and the location in memory, the input arrays have different dimensions depending on whether Matlab or Python is used.</p>
+<div class="section" id="matlab">
+<h3>Matlab<a class="headerlink" href="#matlab" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>In Matlab, the most contiguous dimension is the first one. Therefore, the arrays should have dimensions:</dt><dd><ul class="simple">
+<li><p>continuous data (n_samples_data, n_components, n_stations)</p></li>
+<li><p>template waveforms (n_samples_template, n_components, n_stations, n_detections)</p></li>
+<li><p>moveouts (n_components, n_stations)</p></li>
+<li><p>weights (n_components, n_stations)</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>In Python, the most contiguous dimension is the last one. Therefore, the arrays should have dimensions:</dt><dd><ul class="simple">
+<li><p>continuous data (n_stations, n_components, n_samples_data)</p></li>
+<li><p>template waveforms (n_detections, n_stations, n_components, n_samples_template)</p></li>
+<li><p>moveouts (n_stations, n_components)</p></li>
+<li><p>weights (n_stations, n_components)</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="output-of-fmf">
+<h2>Output of FMF<a class="headerlink" href="#output-of-fmf" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>FMF returns the time series of the average correlation coefficients (CC) calculated for each template given in input. Therefore, the output has dimensions:</dt><dd><ul class="simple">
+<li><p>Python: (n_templates, n_correlations),</p></li>
+<li><p>Matlab: (n_correlations, n_templates).</p></li>
+</ul>
+</dd>
+</dl>
+<p>The number of correlations (n_correlations) is determined by the length of the continuous data and the temporal step you used.</p>
+<p>Given the 6 input arguments described here, the correlation coefficients are obtained by calling the wrapper function in the following way:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fast_matched_filter</span><span class="p">(</span><span class="n">templates</span><span class="p">,</span><span class="w"> </span><span class="n">moveouts</span><span class="p">,</span><span class="w"> </span><span class="n">weights</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nb">step</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>cc(:, i) is the correlation coefficient time series for the i-th template.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span> <span class="o">=</span> <span class="n">matched_filter</span><span class="p">(</span><span class="n">templates</span><span class="p">,</span> <span class="n">moveouts</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span> <span class="ow">or</span> <span class="s1">&#39;gpu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>cc[i,:] is the correlation coefficient time series for the (i+1)-th template.</p>
+<p>To perform earthquake detection from the CC time series, we typically look for the samples that exceed a threshold defined by 8xRMS or 10xMAD (_cf._ figure below).</p>
+<a class="reference internal image-reference" href="usage/example/figures/matched_filter.jpeg"><img alt="usage/example/figures/matched_filter.jpeg" src="usage/example/figures/matched_filter.jpeg" style="width: 100%;" /></a>
+<p>Figure from:
+Beaucé, Eric, W. B. Frank, and Alexey Romanenko (2017). Fast matched-filter (FMF): an efficient seismic matched-filter search for both CPU and GPU architectures.
+Seismological Research Letters, doi: ‘10.1785/022017018 &lt;<a class="reference external" href="https://doi.org/10.1785/0220170181">https://doi.org/10.1785/0220170181</a>&gt;’_</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Eric Beauce and William B. Frank.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
