@@ -41,9 +41,10 @@ Open a terminal in *FMF_tuto* and run:
     $ source activate FMF_tuto
     $ jupyter notebook
 
-You now are connected to a jupyter environment, and thus can have an interactive access with the jupyter notebooks. Go through the four notebooks in this order:
-* 1) build_template_from_catalog.ipynb
-* 2) matched_filter_search.ipynb
-* 3) extract_new_detections.ipynb
-* 4) plot_detections.ipynb
+You now are connected to a jupyter environment, and thus can have an interactive access with the jupyter notebooks. Go through the four notebooks in this order:  
+
+#. build_template_from_catalog.ipynb
+#. matched_filter_search.ipynb
+#. extract_new_detections.ipynb
+#. plot_detections.ipynb
 
